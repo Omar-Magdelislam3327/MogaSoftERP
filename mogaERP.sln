@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36301.6 d17.14
+VisualStudioVersion = 17.14.36301.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mogaERP.API", "mogaERP.API\mogaERP.API.csproj", "{B256D412-1876-402F-80DF-ED113F05DF83}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mogaERP.Infrastructure", "mogaERP.Infrastructure\mogaERP.Infrastructure.csproj", "{E4E06EC4-922C-40BA-A796-65BEE807E9F9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mogaERP.Services", "mogaERP.Services\mogaERP.Services.csproj", "{3E63213B-67F1-4CD9-A14C-5A7E68AE5928}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "mogaERP.Client", "mogaERP.Client\mogaERP.Client.esproj", "{05C4C76D-F941-4E6C-A62C-9BB72FF544C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,12 @@ Global
 		{3E63213B-67F1-4CD9-A14C-5A7E68AE5928}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E63213B-67F1-4CD9-A14C-5A7E68AE5928}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E63213B-67F1-4CD9-A14C-5A7E68AE5928}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05C4C76D-F941-4E6C-A62C-9BB72FF544C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05C4C76D-F941-4E6C-A62C-9BB72FF544C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05C4C76D-F941-4E6C-A62C-9BB72FF544C0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{05C4C76D-F941-4E6C-A62C-9BB72FF544C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05C4C76D-F941-4E6C-A62C-9BB72FF544C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05C4C76D-F941-4E6C-A62C-9BB72FF544C0}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
