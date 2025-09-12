@@ -1,0 +1,1 @@
+﻿global using mogaERP.Domain.Wrappers;

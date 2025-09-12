@@ -1,0 +1,39 @@
+﻿using mogaERP.Domain.Contracts.Common;
+
+namespace mogaERP.Domain.Contracts.ProcurementModule.Supplier;
+public class SupplierRequest
+{
+    public string? AccountCode { get; set; }
+    public string? Name { get; set; }
+    public string? Address { get; set; }
+    public string? ResponsibleName1 { get; set; }
+    public string? ResponsibleName2 { get; set; }
+    public string? Phone1 { get; set; }
+    public string? Phone2 { get; set; }
+    public string? TaxNumber { get; set; }
+    public string? Job { get; set; }
+    public string? Fax1 { get; set; }
+    public string? Fax2 { get; set; }
+    public string? Email { get; set; }
+    public string? Website { get; set; }
+    public string? Notes { get; set; }
+}
+
+public class SupplierResponse : AuditResponse
+{
+    public int Id { get; set; }
+    public string? AccountCode { get; set; }
+    public string? Name { get; set; }
+    public string? Address { get; set; }
+    public string? ResponsibleName1 { get; set; }
+    public string? ResponsibleName2 { get; set; }
+    public string? Phone1 { get; set; }
+    public string? Phone2 { get; set; }
+    public string? TaxNumber { get; set; }
+    public string? Job { get; set; }
+    public string? Fax1 { get; set; }
+    public string? Fax2 { get; set; }
+    public string? Email { get; set; }
+    public string? Website { get; set; }
+    public string? Notes { get; set; }
+}
