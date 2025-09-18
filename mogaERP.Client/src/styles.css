@@ -1,5 +1,6 @@
 :root {
     --main-color: #3D5DA7;
+    --text-blue : #0B5CA3;
     --second-color: #FAA21A;
 }
 
@@ -72,8 +73,11 @@ body {
 
 
 .btn-blue:disabled,
-.btn-red:disabled {
+.btn-orange:disabled {
     background-color: #ccc;
     cursor: not-allowed;
 }
 
+.custom-danger {
+    color: #BA1A1A !important;
+}

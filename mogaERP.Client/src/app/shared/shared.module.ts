@@ -4,7 +4,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ToastModule } from 'primeng/toast';
-
+import { PaginatorModule } from 'primeng/paginator';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [],
@@ -14,6 +15,8 @@ import { ToastModule } from 'primeng/toast';
     FormsModule,
     NgxPaginationModule,
     ToastModule,
+    PaginatorModule,
+    NgSelectModule
   ],
   exports: [
     CommonModule,
@@ -21,6 +24,8 @@ import { ToastModule } from 'primeng/toast';
     FormsModule,
     NgxPaginationModule,
     ToastModule,
+    PaginatorModule,
+    NgSelectModule
   ]
 })
 export class SharedModule { }

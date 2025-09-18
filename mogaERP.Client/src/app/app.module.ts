@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoaderComponent } from './core/interceptors/loader/loader.component';
@@ -12,6 +12,7 @@ import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChartModule } from 'angular-highcharts';
 import { loadingInterceptor } from './core/interceptors/loading.interceptor';
+import { BadgeModule } from 'primeng/badge';
 
 @NgModule({
   declarations: [
@@ -24,10 +25,12 @@ import { loadingInterceptor } from './core/interceptors/loading.interceptor';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ChartModule
+    ChartModule,
+    BadgeModule
   ],
   providers: [
     provideHttpClient(withInterceptors([loadingInterceptor]))

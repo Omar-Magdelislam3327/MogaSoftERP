@@ -6,6 +6,8 @@ import { PurchaseRequestComponent } from './purchase-request/purchase-request.co
 import { PurchaseOrderComponent } from './purchase-order/purchase-order.component';
 import { PriceQoutationsComponent } from './price-qoutations/price-qoutations.component';
 import { SharedModule } from '../../shared/shared.module';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { InputTextModule } from 'primeng/inputtext';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { SharedModule } from '../../shared/shared.module';
   imports: [
     CommonModule,
     PurchasesRoutingModule,
-    SharedModule
+    SharedModule,
+    FloatLabelModule,
+    InputTextModule
   ]
 })
 export class PurchasesModule { }

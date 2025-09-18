@@ -46,19 +46,19 @@ export class MenuService {
         {
           displayName: 'إذن إستلام ',
           icon: 'fa-solid fa-circle',
-          route: 'inventories/add-items',
-          pageName: 'AddItems'
+          route: 'inventory/recipt-permissions',
+          pageName: 'ReciptPermissions'
         },
         {
           displayName: 'طلب صرف ',
           icon: 'fa-solid fa-circle',
-          route: 'inventories/issue-request',
+          route: 'inventory/issue-request',
           pageName: 'IssueRequest'
         },
         {
           displayName: 'إذن صرف',
           icon: 'fa-solid fa-circle',
-          route: 'inventories/issue-items',
+          route: 'inventory/issue-items',
           pageName: 'IssueItems'
         }
       ]
@@ -250,13 +250,13 @@ export class MenuService {
         {
           displayName: 'العملاء',
           icon: 'fa-solid fa-circle',
-          route: 'customers',
+          route: '/system-settings/customers',
           pageName: 'CustomerList'
         },
         {
           displayName: 'الموردين',
           icon: 'fa-solid fa-circle',
-          route: '/providers/provider-list',
+          route: '/system-settings/providers',
           pageName: 'ProviderList'
         },
         {

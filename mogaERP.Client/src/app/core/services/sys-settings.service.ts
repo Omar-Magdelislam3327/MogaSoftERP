@@ -7,6 +7,8 @@ import { ItemsGroups } from '../models/system-settings/itemGroup';
 import { MainGroups } from '../models/system-settings/maingroup';
 import { Store } from '../models/system-settings/stores';
 import { ItemsUnits } from '../models/system-settings/itemUnits';
+import { Provider } from '../models/system-settings/providers';
+import { StoreType } from '../models/system-settings/storeType';
 
 @Injectable({
   providedIn: 'root'
@@ -20,13 +22,15 @@ export class SysSettingsService {
   items = signal<Items[]>([]);
   itemsUnits = signal<ItemsUnits[]>([]);
   stores = signal<Store[]>([]);
+  storeTypes = signal<StoreType[]>([]);
+  providers = signal<Provider[]>([]);
   loading = signal<boolean>(false);
   error = signal<string | null>(null);
   constructor(private http: HttpClient) { }
   // ============================================== Main Groups ============================================== 
-  getAllMainGroups() {
+  getAllMainGroups(searchTerm: string = '') {
     this.loading.set(true);
-    return this.http.get<any>(`${this.baseUrl}MainGroups`).pipe(
+    return this.http.get<any>(`${this.baseUrl}MainGroups?SearchTerm=${searchTerm}`).pipe(
       tap(res => {
         if (res.isSuccess) {
           this.mainGroups.set(res.result);
@@ -72,9 +76,9 @@ export class SysSettingsService {
     );
   }
   // ============================================== Items Groups ==============================================
-  getAllItemsGroups() {
+  getAllItemsGroups(searchTerm: string = '') {
     this.loading.set(true);
-    return this.http.get<any>(`${this.baseUrl}ItemGroups`).pipe(
+    return this.http.get<any>(`${this.baseUrl}ItemGroups?SearchTerm=${searchTerm}`).pipe(
       tap(res => {
         if (res.isSuccess) {
           this.itemsGroups.set(res.result);
@@ -120,9 +124,14 @@ export class SysSettingsService {
     );
   }
   // ============================================== Items =====================================================
-  getAllItems() {
+  getAllItems(
+    pageNumber: number,
+    pageSize: number,
+    searchTerm: string = '',
+    sortDescending: boolean = true
+  ) {
     this.loading.set(true);
-    return this.http.get<any>(`${this.baseUrl}Items`).pipe(
+    return this.http.get<any>(`${this.baseUrl}Items?SearchTerm=${searchTerm}&pageNumber=${pageNumber}&pageSize=${pageSize}&sortDescending=${sortDescending}`).pipe(
       tap(res => {
         if (res.isSuccess) {
           this.items.set(res.result.data);
@@ -168,9 +177,9 @@ export class SysSettingsService {
     );
   }
   // ============================================== Items Units ================================================
-  getAllItemsUnits() {
+  getAllItemsUnits(pageNumber: number, pageSize: number, searchTerm: string = '', sortDescending: boolean = true) {
     this.loading.set(true);
-    return this.http.get<any>(`${this.baseUrl}ItemUnits`).pipe(
+    return this.http.get<any>(`${this.baseUrl}ItemUnits?SearchTerm=${searchTerm}&pageNumber=${pageNumber}&pageSize=${pageSize}&sortDescending=${sortDescending}`).pipe(
       tap(res => {
         if (res.isSuccess) {
           this.itemsUnits.set(res.result);
@@ -216,9 +225,9 @@ export class SysSettingsService {
     );
   }
   // ============================================== Stores ======================================================
-  getAllStores(){
+  getAllStores(SearchTerm:string){
     this.loading.set(true);
-    return this.http.get<any>(`${this.baseUrl}Stores`).pipe(
+    return this.http.get<any>(`${this.baseUrl}Stores?SearchTerm=${SearchTerm}`).pipe(
       tap(res => {
         if (res.isSuccess) {
           this.stores.set(res.result);
@@ -263,4 +272,111 @@ export class SysSettingsService {
       )
     );
   }
+  // ================================================= Stores Types ===================================================
+  getAllStoreTypes(){
+    this.loading.set(true);
+    return this.http.get<any>(`${this.baseUrl}StoreTypes`).pipe(
+      tap(res => {
+        if (res.isSuccess) {
+          this.storeTypes.set(res.result);
+        } else {
+          this.error.set(res.message || 'Error loading stores');
+        }
+      }),
+      catchError(err => {
+        this.error.set('Error loading stores');
+        return of(null);
+      }),
+      tap(() => this.loading.set(false))
+    );
+  }
+
+  getStoreTypeById(id: number) {
+    return this.http.get<StoreType>(`${this.baseUrl}StoreTypes/${id}`);
+  }
+
+  addStoreType(request: Partial<StoreType>) {
+    return this.http.post<StoreType>(`${this.baseUrl}StoreTypes`, request).pipe(
+      tap(newReq => this.storeTypes.update(list => [...list, newReq]))
+    );
+  }
+
+  updateStoreType(id: number, request: Partial<StoreType>) {
+    return this.http.put<StoreType>(`${this.baseUrl}StoreTypes/${id}`, request).pipe(
+      tap(updated =>
+        this.storeTypes.update(list =>
+          list.map(req => (req.id === id ? updated : req))
+        )
+      )
+    );
+  }
+
+  deleteStoreType(id: number) {
+    return this.http.delete(`${this.baseUrl}StoreTypes/${id}`).pipe(
+      tap(() =>
+        this.storeTypes.update(list =>
+          list.filter(req => req.id !== id)
+        )
+      )
+    );
+  }
+  // ========================================================================================================
+  getAllProviders(
+    pageNumber: number,
+    pageSize: number,
+    searchTerm: string = '',
+    sortDescending: boolean = true
+  ){
+    this.loading.set(true);
+    return this.http.get<any>(`${this.baseUrl}Suppliers?PageNumber=${pageNumber}&PageSize=${pageSize}&SearchTerm=${searchTerm}&SortDescending=${sortDescending}`).pipe(
+      tap(res => {
+        if (res.isSuccess) {
+          this.providers.set(res.result);
+        } else {
+          this.error.set(res.message || 'Error loading providers');
+        }
+      }),
+      catchError(err => {
+        this.error.set('Error loading providers');
+        return of(null);
+      }),
+      tap(() => this.loading.set(false))
+    );
+  }
+
+  getProviderById(id: number) {
+    return this.http.get<Provider>(`${this.baseUrl}Suppliers/${id}`);
+  }
+
+  addProvider(request: Partial<Provider>) {
+    return this.http.post<Provider>(`${this.baseUrl}Suppliers`, request).pipe(
+      tap(newReq =>
+        this.providers.update(list =>
+          Array.isArray(list) ? [...list, newReq] : [newReq]
+        )
+      )
+    );
+  }  
+
+  updateProvider(id: number, request: Partial<Provider>) {
+    return this.http.put<Provider>(`${this.baseUrl}Suppliers/${id}`, request).pipe(
+      tap(updated =>
+        this.providers.update(list =>
+          Array.isArray(list)
+            ? list.map(req => (req.id === id ? updated : req))
+            : [updated]
+        )
+      )
+    );
+  }
+
+  deleteProvider(id: number) {
+    return this.http.delete(`${this.baseUrl}Suppliers/${id}`).pipe(
+      tap(() =>
+        this.providers.update(list =>
+          Array.isArray(list) ? list.filter(req => req.id !== id) : []
+        )
+      )
+    );
+  }  
 }

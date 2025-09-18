@@ -134,7 +134,7 @@
   
     .router-active,
     .activSub {
-      color: #D94A91 !important;
+      color: var(--second-color) !important;
       border-radius: 6px !important;
       font-weight: 700;
       font-size: 14px;
@@ -314,8 +314,9 @@
     }
     
     .pi-bell{
-      font-size: 20px;
+      font-size: 22px;
       color: #445CA4;
+      margin-top: 4px;
     }
     .badge {
       position: absolute;
@@ -323,9 +324,12 @@
       right: -8px;
       background: #BA1A1A;
       color: white;
-      font-size: 10px;
-      padding: 2px 5px;
+      font-size: 12px;
+      padding: 4px 6px;
       border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     
     .profile {

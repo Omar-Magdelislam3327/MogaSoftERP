@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class TasksComponent {
   tasks = [
     { id: 'TM-2025-00001', appointment: '06/16/2025 - 06/16/2025', status: 'تم التنفيذ', priority: 'عالية جداً', assignee: '', attachments: 0 },
-    { id: 'TM-2025-00002', appointment: '06/16/2025 - 06/16/2025', status: 'قيد التنفيذ', priority: 'عالية', assignee: '', attachments: 1 },
+    { id: 'TM-2025-00002', appointment: '06/16/2025 - 06/16/2025', status: 'لم تنفذ', priority: 'عالية', assignee: '', attachments: 1 },
     { id: 'TM-2025-00003', appointment: '06/16/2025 - 06/16/2025', status: 'قيد التنفيذ', priority: 'متوسطة', assignee: '', attachments: 2 },
     { id: 'TM-2025-00004', appointment: '06/16/2025 - 07/07/2025', status: 'تم التنفيذ', priority: 'منخفضة', assignee: '', attachments: 0 },
   ];
@@ -25,9 +25,8 @@ export class TasksComponent {
     switch (status.toLowerCase()) {
       case 'تم التنفيذ': return 'bg-success';
       case 'قيد التنفيذ': return 'bg-warning';
-      case 'لم يبدأ': return 'bg-danger';
+      case 'لم تنفذ': return 'bg-danger';
       case 'ملغي': return 'bg-danger';
-      case 'للقيام به': return 'bg-primary';
       default: return 'bg-secondary';
     }
   }

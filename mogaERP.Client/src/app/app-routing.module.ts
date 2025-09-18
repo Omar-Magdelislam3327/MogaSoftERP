@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent , canActivate: [authGuard] },
   { path: 'purchases', loadChildren: () => import('./features/purchases/purchases.module').then(m => m.PurchasesModule) },
+  { path: 'inventory', loadChildren: () => import('./features/inventory/inventory.module').then(m => m.InventoryModule) },
   { path: 'system-settings', loadChildren: () => import('./features/system-settings/system-settings.module').then(m => m.SystemSettingsModule) },
   { path: 'task-mangment', loadChildren: () => import('./features/task-mangment/task-mangment.module').then(m => m.TaskMangmentModule) },
   { path:'**', redirectTo: '/dashboard'}
