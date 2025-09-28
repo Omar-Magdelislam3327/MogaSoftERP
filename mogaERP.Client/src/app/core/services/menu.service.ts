@@ -52,14 +52,14 @@ export class MenuService {
         {
           displayName: 'طلب صرف ',
           icon: 'fa-solid fa-circle',
-          route: 'inventory/issue-request',
-          pageName: 'IssueRequest'
+          route: 'inventory/exchange-request',
+          pageName: 'ExchangeRequest'
         },
         {
           displayName: 'إذن صرف',
           icon: 'fa-solid fa-circle',
-          route: 'inventory/issue-items',
-          pageName: 'IssueItems'
+          route: 'inventory/exchange-permissions',
+          pageName: 'ExchangePermissions'
         }
       ]
     },
@@ -106,13 +106,13 @@ export class MenuService {
             {
               displayName: 'اشعار اضافة',
               icon: 'fa-solid fa-circle',
-              route: 'fin-tree/bank/add-notice',
+              route: 'fin-tree/bank-actions/addition-notifications',
               pageName: 'AddNotice'
             },
             {
               displayName: 'اشعار خصم',
               icon: 'fa-solid fa-circle',
-              route: 'fin-tree/bank/discount-notice',
+              route: 'fin-tree/bank-actions/debit-notifications',
               pageName: 'DiscountNotice'
             },
           ]

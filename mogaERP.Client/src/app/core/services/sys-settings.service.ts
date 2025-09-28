@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
-import { tap, catchError, of } from 'rxjs';
+import { tap, catchError, of, Observable } from 'rxjs';
 import { environment } from '../../../env/environment';
 import { Items } from '../models/system-settings/item';
 import { ItemsGroups } from '../models/system-settings/itemGroup';
@@ -9,6 +9,8 @@ import { Store } from '../models/system-settings/stores';
 import { ItemsUnits } from '../models/system-settings/itemUnits';
 import { Provider } from '../models/system-settings/providers';
 import { StoreType } from '../models/system-settings/storeType';
+import { PagedResult } from '../models/inventory/reciptPermissions';
+import { Department } from '../models/system-settings/departments';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +26,7 @@ export class SysSettingsService {
   stores = signal<Store[]>([]);
   storeTypes = signal<StoreType[]>([]);
   providers = signal<Provider[]>([]);
+  departments = signal<Department[]>([]);
   loading = signal<boolean>(false);
   error = signal<string | null>(null);
   constructor(private http: HttpClient) { }
@@ -379,4 +382,47 @@ export class SysSettingsService {
       )
     );
   }  
+  // 
+  getDepartments(
+    pageNumber: number,
+    pageSize: number,
+    searchTerm: string = '',
+    sortDescending: boolean = true
+  ): Observable<any> {
+    this.loading.set(true);
+    const url = `${this.baseUrl}JobDepartments?PageNumber=${pageNumber}&PageSize=${pageSize}&SearchTerm=${searchTerm}&SortDescending=${sortDescending}`;
+    
+    return this.http.get<any>(url).pipe(
+      catchError(err => {
+        console.error('Error fetching departments', err);
+        return of({ data: [], totalCount: 0 });
+      })
+    );
+  }
+  getDepartmentById(id: number) {
+    return this.http.get<any>(`${this.baseUrl}JobDepartments/${id}`);
+  }
+  addDepartment(request: Partial<any>) {
+    return this.http.post<any>(`${this.baseUrl}JobDepartments`, request).pipe(
+      tap(newReq => this.departments.update(list => [...list, newReq]))
+    );
+  }
+  updateDepartment(id: number, request: Partial<any>) {
+    return this.http.put<any>(`${this.baseUrl}JobDepartments/${id}`, request).pipe(
+      tap(updated =>
+        this.departments.update(list =>
+          list.map(req => (req.id === id ? updated : req))
+        )
+      )
+    );
+  }
+  deleteDepartment(id: number) {
+    return this.http.delete(`${this.baseUrl}JobDepartments/${id}`).pipe(
+      tap(() =>
+        this.departments.update(list =>
+          list.filter(req => req.id !== id)
+        )
+      )
+    );
+  }
 }

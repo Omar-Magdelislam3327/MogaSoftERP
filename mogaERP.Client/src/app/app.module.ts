@@ -21,7 +21,7 @@ import { BadgeModule } from 'primeng/badge';
     DateFormatPipe,
     LayoutComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
